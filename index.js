@@ -1,25 +1,33 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-// Import stylesheets
-require("./style.css");
-const url = 'https://api.dictionaryapi.dev/api/v2/entries/en_US/';
-const form = document.querySelector('#defineform');
-form.onsubmit = (event) => {
-    const formData = new FormData(form);
-    console.log(formData);
-    const text = formData.get('defineword');
-    console.log(text);
-    fetch(url + text) // fetch returns a promise
-        .then(response => response.json()) // convert to json
-        .then(data => {
-        console.log(data);
-        const definition = data[0].meanings[0].definitions[0].definition;
-        const partOfSpeech = data[0].meanings[0].partOfSpeech;
-        const word = data[0].word;
-        const output = document.querySelector('#output');
-        output.innerHTML = `<h2>${word} (${partOfSpeech})</h2><p>${definition}</p>`;
-    })
-        .catch(error => console.error(error));
-    event.preventDefault(); // prevent default form submission
-    return false; // prevent reload
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
+const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
+const form = document.querySelector('#defineform');
+form.addEventListener('submit', (event) => __awaiter(this, void 0, void 0, function* () {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const text = formData.get('defineword');
+    try {
+        const response = yield fetch(`${url}${text}`);
+        const definition = yield response.json();
+        console.log(definition);
+        document.getElementById('word').innerHTML = definition[0].word;
+        document.getElementById('phonetic').innerHTML = definition[0].phonetics[0].text;
+        document.getElementById('definitions')
+            .setAttribute('class', 'bg-secondary rounded text-bg-secondary p-3');
+        document.getElementById('definition1')
+            .innerHTML = `${definition[0].meanings[0].partOfSpeech}: ${definition[0].meanings[0].definitions[0].definition}`;
+        document.getElementById('definition2')
+            .innerHTML = `${definition[0].meanings[1].partOfSpeech}: ${definition[0].meanings[1].definitions[0].definition}`;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}));
+//# sourceMappingURL=index.js.map

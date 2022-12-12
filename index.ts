@@ -1,28 +1,23 @@
-// Import stylesheets
-import './style.css';
-
-const url = 'https://api.dictionaryapi.dev/api/v2/entries/en_US/';
+const url: string = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
 const form: HTMLFormElement = document.querySelector('#defineform');
 
-
-form.onsubmit = (event) => {
-  const formData = new FormData(form);
-
-  console.log(formData);
-  const text = formData.get('defineword') as string;
-  console.log(text);
-  fetch(url + text) // fetch returns a promise
-    .then(response => response.json()) // convert to json
-    .then(data => {
-      console.log(data);
-      const definition = data[0].meanings[0].definitions[0].definition;
-      const partOfSpeech = data[0].meanings[0].partOfSpeech;
-      const word = data[0].word;
-      const output = document.querySelector('#output');
-      output.innerHTML = `<h2>${word} (${partOfSpeech})</h2><p>${definition}</p>`;
-    })
-    .catch(error => console.error(error));
-  event.preventDefault(); // prevent default form submission
-  
-  return false; // prevent reload
-};
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const text = formData.get('defineword') as string;
+    try {
+      const response = await fetch(`${url}${text}`);
+      const definition = await response.json();
+      console.log(definition);
+      document.getElementById('word').innerHTML = definition[0].word;
+      document.getElementById('phonetic').innerHTML = definition[0].phonetics[0].text;
+      document.getElementById('definitions')
+        .setAttribute('class', 'bg-secondary rounded text-bg-secondary p-3');
+      document.getElementById('definition1')
+        .innerHTML = `${definition[0].meanings[0].partOfSpeech}: ${definition[0].meanings[0].definitions[0].definition}`;
+      document.getElementById('definition2')
+        .innerHTML = `${definition[0].meanings[1].partOfSpeech}: ${definition[0].meanings[1].definitions[0].definition}`;
+    } catch (error) {
+      console.error(error);
+    }
+  });
