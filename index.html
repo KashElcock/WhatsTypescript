@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,19 +8,16 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
     <title>Look It Up!</title>
+
     <script src="index.js" type="module"></script>
-    <script>var exports = {};</script>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/navbar-static/">
-
-    
 
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <!-- Favicons -->
 <meta name="theme-color" content="#A40000">
-
 
     <style>
       .bd-placeholder-img {
@@ -62,23 +60,34 @@
         </li>
       </ul>
       <form class="d-flex" id="defineform">
-        <input class="form-control me-2" type="search" name="defineword" placeholder="What word?" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Define</button>
+        <input class="form-control me-2" type="search" name="defineword" placeholder="Enter word here!" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">GO</button>
       </form>
     </div>
   </div>
 </nav>
 
 <main class="container">
-  <div class="bg-light p-5 rounded">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">Look It Up!</h1>
+      <p class="lead my-3">A simple dictionary app that uses the dictionaryapi.dev API to define words.</p>
+      <p class="lead mb-0"><a href="https://www.linkedin.com/in/kashelcock" class="text-white fw-bold">MEET THE DEV <div class="tenor-gif-embed" data-postid="9051065" data-share-method="host" data-aspect-ratio="1.28" data-width="15%"><a href="https://tenor.com/view/pusheen-typing-laptop-gif-9051065"></a>from <a href="https://tenor.com/search/pusheen-gifs"></a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script></a></p>
     <h1>Want a definition?</h1>
     <h5 id="word">Enter a word in the search bar, then hit enter or click define! \m/(^o^)\m/.</h5>
     <div id="phonetic"></div>
     <div id="definitions">
+      <div id="audio"></div>
       <div id="definition1"></div>
       <div id="definition2"></div>
       <div id="synonyms"></div>
       <div id="antonyms"></div>
+      <div id="example"></div>
+      <div id="origin"></div>
+      <div id="pronunciation"></div>
+      <div id="partOfSpeech"></div>
+      <div id="frequency"></div> 
+      
     </div>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/5Sc4XGiQkjE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
