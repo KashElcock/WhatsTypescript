@@ -19,6 +19,10 @@ form.addEventListener('submit', (event) => __awaiter(this, void 0, void 0, funct
         console.log(definition);
         document.getElementById('word').innerHTML = definition[0].word;
         document.getElementById('phonetic').innerHTML = definition[0].phonetics[0].text;
+        const audioPlayer = document.getElementById('audioplayer');
+        audioPlayer.src = definition[0].phonetics[0].audio;
+        audioPlayer.load();
+        audioPlayer.play();
         document.getElementById('definitions');
         document.getElementById('definition1')
             .innerHTML = `${definition[0].meanings[0].partOfSpeech}: ${definition[0].meanings[0].definitions[0].definition}`;
@@ -26,7 +30,6 @@ form.addEventListener('submit', (event) => __awaiter(this, void 0, void 0, funct
             .innerHTML = `${definition[0].meanings[1].partOfSpeech}: ${definition[0].meanings[1].definitions[0].definition}`;
         document.getElementById('definition 3').innerHTML = `${definition[0].meanings[2].partOfSpeech}: ${definition[0].meanings[2].definitions[0].definition}`;
         document.getElementById('definition 4').innerHTML = `${definition[0].meanings[0].partOfSpeech[1]}: ${definition[0].meanings[0].definitions[0].definition}`;
-        document.getElementById('audio').src = definition[0].phonetics[0].audio;
     }
     catch (error) {
         console.error(error);

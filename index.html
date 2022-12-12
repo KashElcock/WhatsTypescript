@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
+    <src audio = id="audio"></src>
     <title>Look It Up!</title>
 
     <script src="index.js" type="module"></script>
@@ -76,8 +77,13 @@
     <h1>Want a definition?</h1>
     <h5 id="word">Enter a word in the search bar, then hit enter or click define! \m/(^o^)\m/.</h5>
     <div id="phonetic"></div>
+    <div id="meaning"></div>
+    <div id="audio"></div>
+    <audio controls>
+      <source src = https://api.dictionaryapi.dev/media/pronunciations/en/hello-uk.mp3 type="audio/mp3">
+      <p>Your browser does not support the audio element.</p>
+    </audio>
     <div id="definitions">
-      <div id="audio"></div>
       <div id="definition1"></div>
       <div id="definition2"></div>
       <div id="synonyms"></div>
